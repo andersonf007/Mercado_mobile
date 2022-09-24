@@ -28,6 +28,7 @@ abstract class _CadastroPessoaStoreBase with Store {
       isLoading = true;
       //await enderecoRepositorio.cadastrarEndereco(endereco);
       await pessoaRepositorio.cadastrarPessoa(pessoa,endereco);
+      isLoading = false;
     }catch(e){
       isLoading = false;
       return Future.error(e);
