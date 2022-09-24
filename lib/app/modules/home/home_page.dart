@@ -129,11 +129,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                               primary: Color.fromARGB(255, 250, 249, 249),
                             ),
                             onPressed: () {
-                              Modular.to.pushNamed('/chartByPaymentMethod');
+                              Modular.to.pushNamed('/cadastroVendedor');
                             },
                             child: Column(
                               children: [
-                                Text('Por forma\nde pagamento',
+                                Text('Vendedor',
                                   style: TextStyle(
                                     color: Colors.black
                                   ),

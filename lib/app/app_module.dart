@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mercado_poo/app/modules/cadastroFornecedor/cadastroFornecedor_module.dart';
 import 'package:mercado_poo/app/modules/cadastroPessoa/cadastroPessoa_module.dart';
+import 'package:mercado_poo/app/modules/cadastroVendedor/cadastroVendedor_module.dart';
 import 'package:mercado_poo/app/modules/home/home_module.dart';
 import 'package:mercado_poo/app/modules/setting/setting_module.dart';
 import 'package:mercado_poo/app/modules/signin/signin_module.dart';
@@ -24,6 +25,7 @@ class AppModule extends Module {
     ModuleRoute('/home', module: HomeModule()),
     ModuleRoute('/cadastroPessoa', module: CadastroPessoaModule()),
     ModuleRoute('/cadastrarFornecedor', module: CadastroFornecedorModule()),
+    ModuleRoute('/cadastroVendedor', module: CadastroVendedorModule())
   ];
 
 }
