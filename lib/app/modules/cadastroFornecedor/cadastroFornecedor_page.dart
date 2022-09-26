@@ -166,7 +166,7 @@ TextEditingController textNome = TextEditingController();
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(),
-                            hintText: "sexo",
+                            hintText: "Telefone",
                             contentPadding: EdgeInsets.only(
                               left: 16,
                             ),

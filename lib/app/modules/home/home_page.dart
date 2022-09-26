@@ -58,7 +58,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                       primary: Color.fromARGB(255, 250, 249, 249),
                     ),
                     onPressed: () {
-                      Modular.to.pushNamed('/cashDetail');
+                      Modular.to.pushNamed('/venda');
                     },                    
                     child: Column(
                       children: [

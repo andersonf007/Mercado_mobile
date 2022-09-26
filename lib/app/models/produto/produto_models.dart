@@ -8,8 +8,8 @@ class Produto{
   int? id;
   String? nome;
   String? categoria;
-  double? vCompra;
-  double? vVenda;
+  double? valorCompra;
+  double? valorVenda;
   int? quantidade;
   String? validade;
 
@@ -18,8 +18,8 @@ class Produto{
     this.nome,
     this.categoria,
     this.quantidade,
-    this.vCompra,
-    this.vVenda,
+    this.valorCompra,
+    this.valorVenda,
     this.validade
   });
  factory Produto.fromJson(Map<String, dynamic> json) =>
@@ -39,8 +39,8 @@ class Produto{
       id: id ?? this.id,
       nome: nome ?? this.nome,
       categoria: categoria ?? this.categoria,
-      vCompra: vCompra ?? this.vCompra,
-      vVenda: vVenda ?? this.vVenda,
+      valorCompra: vCompra ?? this.valorCompra,
+      valorVenda: vVenda ?? this.valorVenda,
       quantidade: quantidade ?? this.quantidade,
       validade: validade ?? this.validade,
     );

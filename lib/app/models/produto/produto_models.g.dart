@@ -11,8 +11,8 @@ Produto _$ProdutoFromJson(Map<String, dynamic> json) => Produto(
       nome: json['nome'] as String?,
       categoria: json['categoria'] as String?,
       quantidade: json['quantidade'] as int?,
-      vCompra: (json['vCompra'] as num?)?.toDouble(),
-      vVenda: (json['vVenda'] as num?)?.toDouble(),
+      valorCompra: (json['valorCompra'] as num?)?.toDouble(),
+      valorVenda: (json['valorVenda'] as num?)?.toDouble(),
       validade: json['validade'] as String?,
     );
 
@@ -20,8 +20,8 @@ Map<String, dynamic> _$ProdutoToJson(Produto instance) => <String, dynamic>{
       'id': instance.id,
       'nome': instance.nome,
       'categoria': instance.categoria,
-      'vCompra': instance.vCompra,
-      'vVenda': instance.vVenda,
+      'valorCompra': instance.valorCompra,
+      'valorVenda': instance.valorVenda,
       'quantidade': instance.quantidade,
       'validade': instance.validade,
     };

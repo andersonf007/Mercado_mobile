@@ -349,8 +349,8 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                             nome: textNome.text,
                             categoria: textcategoria.text,
                             quantidade: int.tryParse(textquantidade.text),
-                            vCompra: double.tryParse(textvCompra.text),
-                            vVenda: double.tryParse(textvVenda.text),
+                            valorCompra: double.tryParse(textvCompra.text),
+                            valorVenda: double.tryParse(textvVenda.text),
                             validade: textValidade.text
                           )
                         ).onError((error, stackTrace) {

@@ -28,4 +28,43 @@ class ProdutoRepositorio{
       return Future.error(e); 
     }
   } 
+
+  Future<List<Produto>> BuscarTodosProdutos() async {
+    try {
+      String url = '/produto/listarTodos';
+      var response = await http.get(url: url);
+      print(response.data);
+      /*if(response.data.length == 0){
+        return Future.error('Nenhum dado nesse periodo');
+      }*/
+      if (response.statusCode == 200) {
+        return (response.data as List).map((e) {
+          var produto = Produto.fromJson(e);
+          return produto;
+        }).toList();
+      }
+      return Future.error(response.data['error']);
+    } catch (e) {
+        if (e.toString().contains('Http status error [404]')){
+          return Future.error("Não existe dados no período!");
+        }
+        return Future.error(e);
+    }
+  }
+
+  Future<Produto> buscarProduto(int id) async {
+    try {
+      String url = '/produto/?id=${id}';
+      var response = await http.get(url: url);
+      if (response.statusCode == 200) {
+        return Produto.fromJson(response.data);
+      }
+      return Future.error(response.data['error']);
+    } catch (e) {
+      if (e is DioError) {
+        print('${e.message} ${e.response} ${e.error}');
+      }
+      return Future.error(e);
+    }
+  }
 }

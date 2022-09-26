@@ -7,6 +7,7 @@ import 'package:mercado_poo/app/modules/home/home_module.dart';
 import 'package:mercado_poo/app/modules/setting/setting_module.dart';
 import 'package:mercado_poo/app/modules/signin/signin_module.dart';
 import 'package:mercado_poo/app/modules/signup/signup_module.dart';
+import 'package:mercado_poo/app/modules/venda/venda_module.dart';
 import 'package:mercado_poo/app/repositorios/IHttpService.dart';
 
 class AppModule extends Module {
@@ -28,6 +29,7 @@ class AppModule extends Module {
     ModuleRoute('/cadastrarFornecedor', module: CadastroFornecedorModule()),
     ModuleRoute('/cadastroVendedor', module: CadastroVendedorModule()),
     ModuleRoute('/cadastroProduto', module: CadastroProdutoModule()),
+    ModuleRoute('/venda', module: VendaModule(),)
   ];
 
 }
