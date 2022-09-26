@@ -142,7 +142,27 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                 
                               ],
                             )),
-                               
+                         SizedBox(
+                          width: 5,
+                        ),    
+                        ElevatedButton(
+                            style:  ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 250, 249, 249),
+                            ),
+                            onPressed: () {
+                              Modular.to.pushNamed('/cadastroProduto');
+                            },
+                            child: Column(
+                              children: [
+                                Text('Produto',
+                                  style: TextStyle(
+                                    color: Colors.black
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                
+                              ],
+                            )),       
                       ],
                     ),
                   ),
