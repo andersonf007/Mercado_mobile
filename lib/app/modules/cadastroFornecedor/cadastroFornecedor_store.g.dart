@@ -57,14 +57,14 @@ mixin _$CadastroFornecedorStore on _CadastroFornecedorStoreBase, Store {
     });
   }
 
-  late final _$cadastrarPessoaAsyncAction = AsyncAction(
-      '_CadastroFornecedorStoreBase.cadastrarPessoa',
+  late final _$cadastrarFornecedorAsyncAction = AsyncAction(
+      '_CadastroFornecedorStoreBase.cadastrarFornecedor',
       context: context);
 
   @override
-  Future<void> cadastrarPessoa(Fornecedor pessoa, Endereco endereco) {
-    return _$cadastrarPessoaAsyncAction
-        .run(() => super.cadastrarPessoa(pessoa, endereco));
+  Future<void> cadastrarFornecedor(Fornecedor fornecedoro) {
+    return _$cadastrarFornecedorAsyncAction
+        .run(() => super.cadastrarFornecedor(fornecedoro));
   }
 
   @override

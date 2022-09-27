@@ -8,11 +8,11 @@ class FornecedorRepositorio{
   IHttpService http;
   FornecedorRepositorio(this.http);
 
-  Future<String> cadastrarPessoa(Fornecedor fornecedor, Endereco endereco) async{
+  Future<String> cadastrarFornecedor(Fornecedor fornecedor) async{
     try{
       final IHttpService iHttpService = IHttpService();
-      var response = await iHttpService.post(url: '/fornecedor/cadastrar', data: {
-        'nome': fornecedor.nome,
+      var response = await iHttpService.post(url: '/fornecedor/cadastrar', data: fornecedor.toJson());
+      /*  'nome': fornecedor.nome,
         'cnpj': fornecedor.cnpj,
         'telefone': fornecedor.telefone,
         'email': fornecedor.email,
@@ -22,7 +22,7 @@ class FornecedorRepositorio{
         'uf': endereco.uf,
         'bairro': endereco.bairro,
         'numero': endereco.numero,
-      });
+      });*/
       return response.data['ok'];
     }catch(e){
       if (e is DioError) {

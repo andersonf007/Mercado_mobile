@@ -562,21 +562,22 @@ TextEditingController textNome = TextEditingController();
                     return ElevatedButton(
                       onPressed: (){
                         //String data = DateFormat("dd/MM/yyyy").format(textDataNascimento.text);
-                        store.cadastrarPessoa(
+                        store.cadastrarFornecedor(
                           Fornecedor(
-                            nome: textNome.text,
-                            cnpj: textCnpj.text,
-                            telefone: texttelefone.text,
-                            email: textEmail.text
+                            nomeFornecedor: textNome.text,
+                            cnpjFornecedor: textCnpj.text,
+                            telefoneFornecedor: texttelefone.text,
+                            emailFornecedor: textEmail.text,
+                            enderecoFornecedor: Endereco(
+                              logradouro: textLogradouro.text,
+                              cep: textCep.text,
+                              cidade: textCidade.text,
+                              uf: textUf.text,
+                              bairro: textBairro.text,
+                              numero: textNumero.text
+                            ),
                           ),
-                          Endereco(
-                            logradouro: textLogradouro.text,
-                            cep: textCep.text,
-                            cidade: textCidade.text,
-                            uf: textUf.text,
-                            bairro: textBairro.text,
-                            numero: textNumero.text
-                          ),
+                          
                         ).onError((error, stackTrace) {
                           ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(error.toString())));

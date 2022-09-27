@@ -7,25 +7,10 @@ class VendedorRepositorio{
   IHttpService http;
   VendedorRepositorio(this.http);
 
-  Future<String> cadastrarVendedor(Vendedor vendedor, Endereco endereco) async{
+  Future<String> cadastrarVendedor(Vendedor vendedor) async{
     try{
       final IHttpService iHttpService = IHttpService();
-      var response = await iHttpService.post(url: '/vendedor/cadastrar', data: {
-        'nome': vendedor.nome,
-        'cpf': vendedor.cpf,
-        'sexo': vendedor.sexo,
-        'email': vendedor.email,
-        'dataNascimento': vendedor.dataNascimento,
-        'cargo': vendedor.cargo,
-        'salario': vendedor.salario,
-        'dataContrato': vendedor.dataContrato,
-        'logradouro': endereco.logradouro,
-        'cep': endereco.cep,
-        'cidade': endereco.cidade,
-        'uf': endereco.uf,
-        'bairro': endereco.bairro,
-        'numero': endereco.numero,
-      });
+      var response = await iHttpService.post(url: '/vendedor/cadastrar', data: vendedor.toJson());
       return response.data['ok'];
     }catch(e){
       if (e is DioError) {

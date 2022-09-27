@@ -8,17 +8,22 @@ part of 'fornecedor_models.dart';
 
 Fornecedor _$FornecedorFromJson(Map<String, dynamic> json) => Fornecedor(
       id: json['id'] as int?,
-      cnpj: json['cnpj'] as String?,
-      nome: json['nome'] as String?,
-      email: json['email'] as String?,
-      telefone: json['telefone'] as String?,
+      cnpjFornecedor: json['cnpjFornecedor'] as String?,
+      nomeFornecedor: json['nomeFornecedor'] as String?,
+      emailFornecedor: json['emailFornecedor'] as String?,
+      telefoneFornecedor: json['telefoneFornecedor'] as String?,
+      enderecoFornecedor: json['enderecoFornecedor'] == null
+          ? null
+          : Endereco.fromJson(
+              json['enderecoFornecedor'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FornecedorToJson(Fornecedor instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'nome': instance.nome,
-      'cnpj': instance.cnpj,
-      'email': instance.email,
-      'telefone': instance.telefone,
+      'nomeFornecedor': instance.nomeFornecedor,
+      'cnpjFornecedor': instance.cnpjFornecedor,
+      'emailFornecedor': instance.emailFornecedor,
+      'telefoneFornecedor': instance.telefoneFornecedor,
+      'enderecoFornecedor': instance.enderecoFornecedor,
     };

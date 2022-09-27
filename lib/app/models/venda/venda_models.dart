@@ -1,5 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mercado_poo/app/models/pessoa/pessoa_models.dart';
+import 'package:mercado_poo/app/models/produto/produto_models.dart';
 import 'package:mercado_poo/app/models/vendaItem_models/vendaItens_models.dart';
+import 'package:mercado_poo/app/models/vendedor/vendedor_models.dart';
 
 part 'venda_models.g.dart';
 
@@ -9,13 +12,19 @@ class Venda{
   String? horaVenda;
   double? valorTotal;
   String? formaPagamento;
-  List<VendaItens>? listVendaItens;
+  Pessoa? clienteVenda;
+  Vendedor? vendedorVenda;
+  List<Produto>? produtosVenda;
+  //List<VendaItens>? listVendaItens;
   Venda({
     this.formaPagamento,
     this.horaVenda,
     this.id,
     this.valorTotal,
-    this.listVendaItens,
+    //this.listVendaItens,
+    this.clienteVenda,
+    this.produtosVenda,
+    this.vendedorVenda
   });
  factory Venda.fromJson(Map<String, dynamic> json) =>
       _$VendaFromJson(json);
@@ -26,14 +35,20 @@ class Venda{
     String? horaVenda,
     double? valorTotal,
     String? formaPagamento,
-  List<VendaItens>? listVendaItens,
+    //List<VendaItens>? listVendaItens,
+    Pessoa? clienteVenda,
+    Vendedor? vendedorVenda,
+    List<Produto>? produtosVenda,
   }){
     return Venda(
       id: id ?? this.id,
       formaPagamento: formaPagamento ?? this.formaPagamento,
       horaVenda: horaVenda ?? this.horaVenda,
       valorTotal: valorTotal ?? this.valorTotal,
-      listVendaItens: listVendaItens ?? this.listVendaItens,
+      //listVendaItens: listVendaItens ?? this.listVendaItens,
+      clienteVenda: clienteVenda ?? this.clienteVenda,
+      vendedorVenda: vendedorVenda ?? this.vendedorVenda,
+      produtosVenda: produtosVenda ?? this.produtosVenda,
     );
   }
 }

@@ -9,19 +9,19 @@ part of 'venda_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$VendaStore on _VendaStoreBase, Store {
-  late final _$listVendaItemAtom =
-      Atom(name: '_VendaStoreBase.listVendaItem', context: context);
+  late final _$listProdutoVendaAtom =
+      Atom(name: '_VendaStoreBase.listProdutoVenda', context: context);
 
   @override
-  List<VendaItens> get listVendaItem {
-    _$listVendaItemAtom.reportRead();
-    return super.listVendaItem;
+  List<VendaItens> get listProdutoVenda {
+    _$listProdutoVendaAtom.reportRead();
+    return super.listProdutoVenda;
   }
 
   @override
-  set listVendaItem(List<VendaItens> value) {
-    _$listVendaItemAtom.reportWrite(value, super.listVendaItem, () {
-      super.listVendaItem = value;
+  set listProdutoVenda(List<VendaItens> value) {
+    _$listProdutoVendaAtom.reportWrite(value, super.listProdutoVenda, () {
+      super.listProdutoVenda = value;
     });
   }
 
@@ -148,7 +148,7 @@ mixin _$VendaStore on _VendaStoreBase, Store {
   @override
   String toString() {
     return '''
-listVendaItem: ${listVendaItem},
+listProdutoVenda: ${listProdutoVenda},
 listProduto: ${listProduto},
 resultList: ${resultList},
 produto: ${produto},

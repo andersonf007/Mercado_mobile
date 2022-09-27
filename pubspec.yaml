@@ -20,6 +20,7 @@ dependencies:
   shared_preferences: ^2.0.15 
   google_fonts: ^3.0.1
   fl_chart: ^0.55.1
+  big_decimal: ^0.3.1
   
 
 dev_dependencies:

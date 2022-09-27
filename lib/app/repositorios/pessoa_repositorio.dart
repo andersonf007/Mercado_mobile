@@ -8,22 +8,10 @@ class PessoaRepositorio{
   IHttpService http;
   PessoaRepositorio(this.http);
 
-  Future<String> cadastrarPessoa(Pessoa pessoa, Endereco endereco) async{
+  Future<String> cadastrarPessoa(Pessoa pessoa) async{
     try{
       final IHttpService iHttpService = IHttpService();
-      var response = await iHttpService.post(url: '/cliente/cadastrar', data: {
-        'nome': pessoa.nome,
-        'cpf': pessoa.cpf,
-        'sexo': pessoa.sexo,
-        'dataNascimento': pessoa.dataNascimento,
-        'email': pessoa.email,
-        'logradouro': endereco.logradouro,
-        'cep': endereco.cep,
-        'cidade': endereco.cidade,
-        'uf': endereco.uf,
-        'bairro': endereco.bairro,
-        'numero': endereco.numero,
-      });
+      var response = await iHttpService.post(url: '/cliente/cadastrar', data: pessoa.toJson());
       return response.data['ok'];
     }catch(e){
       if (e is DioError) {

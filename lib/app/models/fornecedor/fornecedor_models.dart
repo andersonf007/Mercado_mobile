@@ -1,21 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mercado_poo/app/models/endereco/endereco_models.dart';
 
 part 'fornecedor_models.g.dart';
 
 @JsonSerializable()
 class Fornecedor{
   int? id;
-	String? nome;
-  String? cnpj;
-  String? email;
-  String? telefone;
+	String? nomeFornecedor;
+  String? cnpjFornecedor;
+  String? emailFornecedor;
+  String? telefoneFornecedor;
+  Endereco? enderecoFornecedor;
 
   Fornecedor({
     this.id,
-    this.cnpj,
-    this.nome,
-    this.email,
-    this.telefone
+    this.cnpjFornecedor,
+    this.nomeFornecedor,
+    this.emailFornecedor,
+    this.telefoneFornecedor,
+    this.enderecoFornecedor
   });
    factory Fornecedor.fromJson(Map<String, dynamic> json) =>
       _$FornecedorFromJson(json);
@@ -23,17 +26,19 @@ class Fornecedor{
 
 Fornecedor copywith({
    int? id,
-	 String? nome,
-	 String? cnpj,
-	 String? telefone,
-	 String? email,
+	 String? nomeFornecedor,
+	 String? cnpjFornecedor,
+	 String? telefoneFornecedor,
+	 String? emailFornecedor,
+  Endereco? enderecoFornecedor,
   }){
     return Fornecedor(
       id: id ?? this.id,
-      nome: nome ?? this.nome,
-      cnpj: cnpj ?? this.cnpj,
-      telefone: telefone ?? this.telefone,
-      email: email ?? this.email,
+      nomeFornecedor: nomeFornecedor ?? this.nomeFornecedor,
+      cnpjFornecedor: cnpjFornecedor ?? this.cnpjFornecedor,
+      telefoneFornecedor: telefoneFornecedor ?? this.telefoneFornecedor,
+      emailFornecedor: emailFornecedor ?? this.emailFornecedor,
+      enderecoFornecedor: enderecoFornecedor ?? this.enderecoFornecedor,
     );
   }
 }

@@ -622,18 +622,17 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                             nome: textNome.text,
                             cpf: textCpf.text,
                             sexo: textSexo.text,
-                            //dataNascimento: DateFormat("dd/MM/yyyy").parse(textDataNascimento.text),
-                            dataNascimento: textDataNascimento.text,
-                            email: textEmail.text
-                          ),
-                          Endereco(
-                            logradouro: textLogradouro.text,
-                            cep: textCep.text,
-                            cidade: textCidade.text,
-                            uf: textUf.text,
-                            bairro: textBairro.text,
-                            numero: textNumero.text
-                          ),
+                            dataNascimento: DateTime.tryParse(textDataNascimento.text),
+                            email: textEmail.text,
+                            enderecoPessoa: Endereco(
+                              logradouro: textLogradouro.text,
+                              cep: textCep.text,
+                              cidade: textCidade.text,
+                              uf: textUf.text,
+                              bairro: textBairro.text,
+                              numero: textNumero.text
+                            ),
+                          )                          
                         ).onError((error, stackTrace) {
                           ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(error.toString())));

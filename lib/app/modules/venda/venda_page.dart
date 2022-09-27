@@ -47,31 +47,31 @@ class VendaPageState extends State<VendaPage> {
           ),
           Observer(
             builder: (context){
-              if(store.listVendaItem.isEmpty)
+              if(store.listProdutoVenda.isEmpty)
                 return Center(
                   child: Text('Não existe produtos nessa venda'),
                 );
               return Expanded(
                 child: ListView.builder(
-                  itemCount: store.listVendaItem.length,
+                  itemCount: store.listProdutoVenda.length,
                   itemBuilder: (context, index){
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(store.listVendaItem[index].nomeProduto!,
+                        Text(store.listProdutoVenda[index].produto?.nome ?? "",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
                         ),
-                        Text(store.listVendaItem[index].qtdProdutos!.toString(),
+                        Text(store.listProdutoVenda[index].qtdProdutos!.toString(),
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
                         ),
-                        Text(formatter.format(store.listVendaItem[index].valorTotal!),
+                        Text(formatter.format(store.listProdutoVenda[index].valorTotal!),
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold

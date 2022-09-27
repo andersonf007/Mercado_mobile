@@ -351,7 +351,7 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                             quantidade: int.tryParse(textquantidade.text),
                             valorCompra: double.tryParse(textvCompra.text),
                             valorVenda: double.tryParse(textvVenda.text),
-                            validade: textValidade.text
+                            validade: DateTime.tryParse(textValidade.text)
                           )
                         ).onError((error, stackTrace) {
                           ScaffoldMessenger.of(context).showSnackBar(

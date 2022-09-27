@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mercado_poo/app/models/produto/produto_models.dart';
 
 part 'vendaItens_models.g.dart';
 
@@ -7,17 +8,15 @@ class VendaItens{
   int? id;
   int? qtdProdutos;
   double? valorTotal;
-  String? validade;
-  int? produto_id;
-  String? nomeProduto;
+  DateTime? validade;
+  Produto? produto;
 
  VendaItens({
     this.id,
     this.qtdProdutos,
     this.valorTotal,
     this.validade,
-    this.produto_id,
-    this.nomeProduto,
+    this.produto,
   });
  factory VendaItens.fromJson(Map<String, dynamic> json) =>
       _$VendaItensFromJson(json);
@@ -27,17 +26,15 @@ class VendaItens{
     int? id,
     int? qtdProdutos,
     double? valorTotal,
-    String? validade,
-    int? produto_id,
-    String? nomeProduto,
+    DateTime? validade,
+    Produto? produto,
   }){
     return VendaItens(
       id: id ?? this.id,
       qtdProdutos: qtdProdutos ?? this.qtdProdutos,
       valorTotal: valorTotal ?? this.valorTotal,
       validade: validade ?? this.validade,
-      produto_id: produto_id ?? this.produto_id,
-      nomeProduto: nomeProduto ?? this.nomeProduto,
+      produto: produto ?? this.produto,
     );
   }
 }

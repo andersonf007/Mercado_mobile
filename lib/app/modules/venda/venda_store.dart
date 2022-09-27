@@ -15,7 +15,7 @@ abstract class _VendaStoreBase with Store {
   _VendaStoreBase({required this.produtoRepositorio, required this.vendaRepositorio});
 
   @observable
-  List<VendaItens> listVendaItem =  ObservableList.of([]);
+  List<VendaItens> listProdutoVenda =  ObservableList.of([]);
 
   @observable
   List<Produto> listProduto = ObservableList.of([]);
@@ -80,11 +80,10 @@ abstract class _VendaStoreBase with Store {
   @action
   Future<void> adicionarNaListaDeVenda(Produto produto, int quantidade) async{
     VendaItens vendaItens = VendaItens();
-    vendaItens.nomeProduto = produto.nome;
+    vendaItens.produto = produto;
     vendaItens.qtdProdutos = quantidade;
     vendaItens.validade = produto.validade;
-    vendaItens.produto_id = produto.id;
     vendaItens.valorTotal =  (produto.valorVenda! * quantidade);
-    listVendaItem.add(vendaItens);
+    listProdutoVenda.add(vendaItens);
   }
 }

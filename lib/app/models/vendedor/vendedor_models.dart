@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mercado_poo/app/models/endereco/endereco_models.dart';
 
 part 'vendedor_models.g.dart';
 
@@ -8,11 +9,12 @@ class Vendedor{
 	String? nome;
 	String? cpf;
 	String? sexo;
-	String? dataNascimento;
+	DateTime? dataNascimento;
 	String? email;
   String? cargo;
   double? salario;
-  String? dataContrato;
+  DateTime? dataContrato;
+  Endereco? enderecoPessoa;
 
   Vendedor({
     this.id,
@@ -23,7 +25,8 @@ class Vendedor{
     this.email,
     this.cargo,
     this.salario,
-    this.dataContrato
+    this.dataContrato,
+    this.enderecoPessoa
   });
   factory Vendedor.fromJson(Map<String, dynamic> json) =>
       _$VendedorFromJson(json);
@@ -34,11 +37,12 @@ class Vendedor{
 	  String? nome,
 	  String? cpf,
 	  String? sexo,
-	  String? dataNascimento,
+	  DateTime? dataNascimento,
 	  String? email,
     String? cargo,
     double? salario,
-    String? dataContrato,
+    DateTime? dataContrato,
+  Endereco? enderecoPessoa,
   }){
     return Vendedor(
       id: id ?? this.id,
@@ -49,7 +53,8 @@ class Vendedor{
       email: email ?? this.email,
       cargo: cargo ?? this.cargo,
       salario: salario ?? this.salario,
-      dataContrato: dataContrato ?? dataContrato
+      dataContrato: dataContrato ?? dataContrato,
+      enderecoPessoa: enderecoPessoa ?? this.enderecoPessoa,
     );
   }
 }

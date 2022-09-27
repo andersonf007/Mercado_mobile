@@ -22,11 +22,11 @@ abstract class _CadastroFornecedorStoreBase with Store {
   Endereco endereco = Endereco();
 
   @action
-  Future<void> cadastrarPessoa(Fornecedor pessoa, Endereco endereco) async{
+  Future<void> cadastrarFornecedor(Fornecedor fornecedoro) async{
     try{
       isLoading = true;
       //await enderecoRepositorio.cadastrarEndereco(endereco);
-      await fornecedorRepositorio.cadastrarPessoa(pessoa,endereco);
+      await fornecedorRepositorio.cadastrarFornecedor(fornecedoro);
       isLoading = false;
     }catch(e){
       isLoading = false;

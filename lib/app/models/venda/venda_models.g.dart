@@ -11,9 +11,15 @@ Venda _$VendaFromJson(Map<String, dynamic> json) => Venda(
       horaVenda: json['horaVenda'] as String?,
       id: json['id'] as int?,
       valorTotal: (json['valorTotal'] as num?)?.toDouble(),
-      listVendaItens: (json['listVendaItens'] as List<dynamic>?)
-          ?.map((e) => VendaItens.fromJson(e as Map<String, dynamic>))
+      clienteVenda: json['clienteVenda'] == null
+          ? null
+          : Pessoa.fromJson(json['clienteVenda'] as Map<String, dynamic>),
+      produtosVenda: (json['produtosVenda'] as List<dynamic>?)
+          ?.map((e) => Produto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      vendedorVenda: json['vendedorVenda'] == null
+          ? null
+          : Vendedor.fromJson(json['vendedorVenda'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$VendaToJson(Venda instance) => <String, dynamic>{
@@ -21,5 +27,7 @@ Map<String, dynamic> _$VendaToJson(Venda instance) => <String, dynamic>{
       'horaVenda': instance.horaVenda,
       'valorTotal': instance.valorTotal,
       'formaPagamento': instance.formaPagamento,
-      'listVendaItens': instance.listVendaItens,
+      'clienteVenda': instance.clienteVenda,
+      'vendedorVenda': instance.vendedorVenda,
+      'produtosVenda': instance.produtosVenda,
     };

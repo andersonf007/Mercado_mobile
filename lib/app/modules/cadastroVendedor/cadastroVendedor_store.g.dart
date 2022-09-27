@@ -62,9 +62,9 @@ mixin _$CadastroVendedorStore on _CadastroVendedorStoreBase, Store {
       context: context);
 
   @override
-  Future<void> cadastrarVendedor(Vendedor vendedor, Endereco endereco) {
+  Future<void> cadastrarVendedor(Vendedor vendedor) {
     return _$cadastrarVendedorAsyncAction
-        .run(() => super.cadastrarVendedor(vendedor, endereco));
+        .run(() => super.cadastrarVendedor(vendedor));
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mercado_poo/app/models/endereco/endereco_models.dart';
 
 part 'pessoa_models.g.dart';
 
@@ -8,8 +9,9 @@ class Pessoa{
 	 String? nome;
 	 String? cpf;
 	 String? sexo;
-	 String? dataNascimento;
-	 String? email;
+	 DateTime? dataNascimento;
+	 String? email;   
+  Endereco? enderecoPessoa;
 
    Pessoa({
     this.id,
@@ -17,7 +19,8 @@ class Pessoa{
     this.cpf,
     this.sexo,
     this.dataNascimento,
-    this.email
+    this.email,
+    this.enderecoPessoa
    });
 
    factory Pessoa.fromJson(Map<String, dynamic> json) =>
@@ -29,8 +32,9 @@ class Pessoa{
 	 String? nome,
 	 String? cpf,
 	 String? sexo,
-	 String? dataNascimento,
+	 DateTime? dataNascimento,
 	 String? email,
+  Endereco? enderecoPessoa,
   }){
     return Pessoa(
       id: id ?? this.id,
@@ -39,6 +43,7 @@ class Pessoa{
       sexo: sexo ?? this.sexo,
       dataNascimento: dataNascimento ?? this.dataNascimento,
       email: email ?? this.email,
+      enderecoPessoa: enderecoPessoa ?? this.enderecoPessoa,
     );
   }
 }

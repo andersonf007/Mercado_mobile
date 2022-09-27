@@ -10,9 +10,12 @@ VendaItens _$VendaItensFromJson(Map<String, dynamic> json) => VendaItens(
       id: json['id'] as int?,
       qtdProdutos: json['qtdProdutos'] as int?,
       valorTotal: (json['valorTotal'] as num?)?.toDouble(),
-      validade: json['validade'] as String?,
-      produto_id: json['produto_id'] as int?,
-      nomeProduto: json['nomeProduto'] as String?,
+      validade: json['validade'] == null
+          ? null
+          : DateTime.parse(json['validade'] as String),
+      produto: json['produto'] == null
+          ? null
+          : Produto.fromJson(json['produto'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$VendaItensToJson(VendaItens instance) =>
@@ -20,7 +23,6 @@ Map<String, dynamic> _$VendaItensToJson(VendaItens instance) =>
       'id': instance.id,
       'qtdProdutos': instance.qtdProdutos,
       'valorTotal': instance.valorTotal,
-      'validade': instance.validade,
-      'produto_id': instance.produto_id,
-      'nomeProduto': instance.nomeProduto,
+      'validade': instance.validade?.toIso8601String(),
+      'produto': instance.produto,
     };
