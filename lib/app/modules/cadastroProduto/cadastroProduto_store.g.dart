@@ -51,6 +51,14 @@ mixin _$CadastroProdutoStore on _CadastroProdutoStoreBase, Store {
         .run(() => super.cadastrarProduto(produto));
   }
 
+  late final _$buscarProdutoAsyncAction =
+      AsyncAction('_CadastroProdutoStoreBase.buscarProduto', context: context);
+
+  @override
+  Future<Produto> buscarProduto(int id) {
+    return _$buscarProdutoAsyncAction.run(() => super.buscarProduto(id));
+  }
+
   @override
   String toString() {
     return '''

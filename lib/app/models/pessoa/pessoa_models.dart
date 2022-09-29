@@ -9,7 +9,7 @@ class Pessoa{
 	 String? nome;
 	 String? cpf;
 	 String? sexo;
-	 DateTime? dataNascimento;
+	 String? dataNascimento;
 	 String? email;   
   Endereco? enderecoPessoa;
 
@@ -32,7 +32,7 @@ class Pessoa{
 	 String? nome,
 	 String? cpf,
 	 String? sexo,
-	 DateTime? dataNascimento,
+	 String? dataNascimento,
 	 String? email,
   Endereco? enderecoPessoa,
   }){

@@ -21,6 +21,7 @@ class VendaPageState extends State<VendaPage> {
         title: Text(widget.title),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,11 +85,56 @@ class VendaPageState extends State<VendaPage> {
               );  
             }
           ),
-          ElevatedButton(
-            onPressed: (){
-              Modular.to.pushNamed('/venda/ListagemProduto');
-            }, 
-            child: Text('ADD. produto')
+          Observer(builder: (context){
+            return Text("Total R\$ ${store.valorTotal}",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold
+              ),
+            );
+          }),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: (){
+                    Modular.to.pushNamed('/venda/ListagemProduto');
+                  }, 
+                  child: Text('ADD. produto',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 18,
+                      color: Colors.black
+                    ),
+                  ),
+                  style:  ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 250, 249, 249),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: (){
+                    if(store.listProdutoVenda.isEmpty){
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("insira produto na venda")));
+                    }else{
+                      Modular.to.pushNamed('/venda/FinalizarVenda');
+                    }
+                  }, 
+                  child: Text('ADD. venda',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 18,
+                      color: Colors.black
+                    ),
+                  ),
+                  style:  ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 250, 249, 249),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

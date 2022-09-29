@@ -11,7 +11,7 @@ class Produto{
   double? valorCompra;
   double? valorVenda;
   int? quantidade;
-  DateTime? validade;
+  String? validade;
 
   Produto({
     this.id,
@@ -33,7 +33,7 @@ class Produto{
     double? vCompra,
     double? vVenda,
     int? quantidade,
-    DateTime? validade,
+    String? validade,
   }){
     return Produto(
       id: id ?? this.id,

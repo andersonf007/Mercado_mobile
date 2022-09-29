@@ -15,7 +15,7 @@ Venda _$VendaFromJson(Map<String, dynamic> json) => Venda(
           ? null
           : Pessoa.fromJson(json['clienteVenda'] as Map<String, dynamic>),
       produtosVenda: (json['produtosVenda'] as List<dynamic>?)
-          ?.map((e) => Produto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProdutoVenda.fromJson(e as Map<String, dynamic>))
           .toList(),
       vendedorVenda: json['vendedorVenda'] == null
           ? null

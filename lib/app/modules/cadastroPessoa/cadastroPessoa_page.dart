@@ -622,7 +622,7 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                             nome: textNome.text,
                             cpf: textCpf.text,
                             sexo: textSexo.text,
-                            dataNascimento: DateTime.tryParse(textDataNascimento.text),
+                            dataNascimento: textDataNascimento.text,//DateTime.tryParse(textDataNascimento.text),
                             email: textEmail.text,
                             enderecoPessoa: Endereco(
                               logradouro: textLogradouro.text,

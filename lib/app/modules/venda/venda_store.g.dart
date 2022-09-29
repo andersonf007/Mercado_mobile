@@ -13,13 +13,13 @@ mixin _$VendaStore on _VendaStoreBase, Store {
       Atom(name: '_VendaStoreBase.listProdutoVenda', context: context);
 
   @override
-  List<VendaItens> get listProdutoVenda {
+  List<ProdutoVenda> get listProdutoVenda {
     _$listProdutoVendaAtom.reportRead();
     return super.listProdutoVenda;
   }
 
   @override
-  set listProdutoVenda(List<VendaItens> value) {
+  set listProdutoVenda(List<ProdutoVenda> value) {
     _$listProdutoVendaAtom.reportWrite(value, super.listProdutoVenda, () {
       super.listProdutoVenda = value;
     });
@@ -57,6 +57,54 @@ mixin _$VendaStore on _VendaStoreBase, Store {
     });
   }
 
+  late final _$listVendedorAtom =
+      Atom(name: '_VendaStoreBase.listVendedor', context: context);
+
+  @override
+  List<Vendedor> get listVendedor {
+    _$listVendedorAtom.reportRead();
+    return super.listVendedor;
+  }
+
+  @override
+  set listVendedor(List<Vendedor> value) {
+    _$listVendedorAtom.reportWrite(value, super.listVendedor, () {
+      super.listVendedor = value;
+    });
+  }
+
+  late final _$listClienteAtom =
+      Atom(name: '_VendaStoreBase.listCliente', context: context);
+
+  @override
+  List<Pessoa> get listCliente {
+    _$listClienteAtom.reportRead();
+    return super.listCliente;
+  }
+
+  @override
+  set listCliente(List<Pessoa> value) {
+    _$listClienteAtom.reportWrite(value, super.listCliente, () {
+      super.listCliente = value;
+    });
+  }
+
+  late final _$vendaAtom =
+      Atom(name: '_VendaStoreBase.venda', context: context);
+
+  @override
+  Venda get venda {
+    _$vendaAtom.reportRead();
+    return super.venda;
+  }
+
+  @override
+  set venda(Venda value) {
+    _$vendaAtom.reportWrite(value, super.venda, () {
+      super.venda = value;
+    });
+  }
+
   late final _$produtoAtom =
       Atom(name: '_VendaStoreBase.produto', context: context);
 
@@ -70,6 +118,38 @@ mixin _$VendaStore on _VendaStoreBase, Store {
   set produto(Produto value) {
     _$produtoAtom.reportWrite(value, super.produto, () {
       super.produto = value;
+    });
+  }
+
+  late final _$pessoaAtom =
+      Atom(name: '_VendaStoreBase.pessoa', context: context);
+
+  @override
+  Pessoa get pessoa {
+    _$pessoaAtom.reportRead();
+    return super.pessoa;
+  }
+
+  @override
+  set pessoa(Pessoa value) {
+    _$pessoaAtom.reportWrite(value, super.pessoa, () {
+      super.pessoa = value;
+    });
+  }
+
+  late final _$vendedorAtom =
+      Atom(name: '_VendaStoreBase.vendedor', context: context);
+
+  @override
+  Vendedor get vendedor {
+    _$vendedorAtom.reportRead();
+    return super.vendedor;
+  }
+
+  @override
+  set vendedor(Vendedor value) {
+    _$vendedorAtom.reportWrite(value, super.vendedor, () {
+      super.vendedor = value;
     });
   }
 
@@ -89,19 +169,116 @@ mixin _$VendaStore on _VendaStoreBase, Store {
     });
   }
 
-  late final _$errorAtom =
-      Atom(name: '_VendaStoreBase.error', context: context);
+  late final _$isLoadingClienteAtom =
+      Atom(name: '_VendaStoreBase.isLoadingCliente', context: context);
 
   @override
-  String get error {
-    _$errorAtom.reportRead();
-    return super.error;
+  bool get isLoadingCliente {
+    _$isLoadingClienteAtom.reportRead();
+    return super.isLoadingCliente;
   }
 
   @override
-  set error(String value) {
-    _$errorAtom.reportWrite(value, super.error, () {
-      super.error = value;
+  set isLoadingCliente(bool value) {
+    _$isLoadingClienteAtom.reportWrite(value, super.isLoadingCliente, () {
+      super.isLoadingCliente = value;
+    });
+  }
+
+  late final _$isLoadingVendedorAtom =
+      Atom(name: '_VendaStoreBase.isLoadingVendedor', context: context);
+
+  @override
+  bool get isLoadingVendedor {
+    _$isLoadingVendedorAtom.reportRead();
+    return super.isLoadingVendedor;
+  }
+
+  @override
+  set isLoadingVendedor(bool value) {
+    _$isLoadingVendedorAtom.reportWrite(value, super.isLoadingVendedor, () {
+      super.isLoadingVendedor = value;
+    });
+  }
+
+  late final _$isLoadingInserirVendaAtom =
+      Atom(name: '_VendaStoreBase.isLoadingInserirVenda', context: context);
+
+  @override
+  bool get isLoadingInserirVenda {
+    _$isLoadingInserirVendaAtom.reportRead();
+    return super.isLoadingInserirVenda;
+  }
+
+  @override
+  set isLoadingInserirVenda(bool value) {
+    _$isLoadingInserirVendaAtom.reportWrite(value, super.isLoadingInserirVenda,
+        () {
+      super.isLoadingInserirVenda = value;
+    });
+  }
+
+  late final _$idClienteAtom =
+      Atom(name: '_VendaStoreBase.idCliente', context: context);
+
+  @override
+  int get idCliente {
+    _$idClienteAtom.reportRead();
+    return super.idCliente;
+  }
+
+  @override
+  set idCliente(int value) {
+    _$idClienteAtom.reportWrite(value, super.idCliente, () {
+      super.idCliente = value;
+    });
+  }
+
+  late final _$idVendedorAtom =
+      Atom(name: '_VendaStoreBase.idVendedor', context: context);
+
+  @override
+  int get idVendedor {
+    _$idVendedorAtom.reportRead();
+    return super.idVendedor;
+  }
+
+  @override
+  set idVendedor(int value) {
+    _$idVendedorAtom.reportWrite(value, super.idVendedor, () {
+      super.idVendedor = value;
+    });
+  }
+
+  late final _$valorTotalAtom =
+      Atom(name: '_VendaStoreBase.valorTotal', context: context);
+
+  @override
+  double get valorTotal {
+    _$valorTotalAtom.reportRead();
+    return super.valorTotal;
+  }
+
+  @override
+  set valorTotal(double value) {
+    _$valorTotalAtom.reportWrite(value, super.valorTotal, () {
+      super.valorTotal = value;
+    });
+  }
+
+  late final _$dropdownValueAtom =
+      Atom(name: '_VendaStoreBase.dropdownValue', context: context);
+
+  @override
+  String get dropdownValue {
+    _$dropdownValueAtom.reportRead();
+    return super.dropdownValue;
+  }
+
+  @override
+  set dropdownValue(String value) {
+    _$dropdownValueAtom.reportWrite(value, super.dropdownValue, () {
+      super.dropdownValue = value;
     });
   }
 
@@ -131,6 +308,14 @@ mixin _$VendaStore on _VendaStoreBase, Store {
         .run(() => super.adicionarNaListaDeVenda(produto, quantidade));
   }
 
+  late final _$getdataAsyncAction =
+      AsyncAction('_VendaStoreBase.getdata', context: context);
+
+  @override
+  Future<void> getdata() {
+    return _$getdataAsyncAction.run(() => super.getdata());
+  }
+
   late final _$_VendaStoreBaseActionController =
       ActionController(name: '_VendaStoreBase', context: context);
 
@@ -151,9 +336,20 @@ mixin _$VendaStore on _VendaStoreBase, Store {
 listProdutoVenda: ${listProdutoVenda},
 listProduto: ${listProduto},
 resultList: ${resultList},
+listVendedor: ${listVendedor},
+listCliente: ${listCliente},
+venda: ${venda},
 produto: ${produto},
+pessoa: ${pessoa},
+vendedor: ${vendedor},
 isLoading: ${isLoading},
-error: ${error}
+isLoadingCliente: ${isLoadingCliente},
+isLoadingVendedor: ${isLoadingVendedor},
+isLoadingInserirVenda: ${isLoadingInserirVenda},
+idCliente: ${idCliente},
+idVendedor: ${idVendedor},
+valorTotal: ${valorTotal},
+dropdownValue: ${dropdownValue}
     ''';
   }
 }

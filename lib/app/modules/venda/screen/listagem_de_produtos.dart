@@ -76,11 +76,6 @@ class _ListagemProdutoState extends State<ListagemProduto> {
                   child: CircularProgressIndicator(),
                 );
               }
-              if (store.error.isNotEmpty) {
-                return Center(
-                  child: Text('Erro ao buscar lista de produtos'),
-                );
-              }
               return Expanded(
                 child: ListView.builder(
                   itemCount: store.resultList.length,
@@ -132,9 +127,19 @@ class _ListagemProdutoState extends State<ListagemProduto> {
                                       ),
                                   ElevatedButton(
                                     onPressed: () async{
-                                      await store.adicionarNaListaDeVenda(product, int.parse(textQuantidade.text));
-                                      Modular.to.pop();
-                                      Modular.to.pop();
+                                      if(textQuantidade.text.isEmpty){
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(content: Text("Digite um valor")));
+                                      }else{
+                                        if((int.tryParse(textQuantidade.text) ?? 1) <= store.resultList[index].quantidade!){
+                                          await store.adicionarNaListaDeVenda(product, int.parse(textQuantidade.text));
+                                          Modular.to.pop();
+                                          Modular.to.pop();
+                                        }else{
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(content: Text("Não existe estoque suficiente")));
+                                        }
+                                      }
                                     }, 
                                     child: Text('Salvar')
                                   ),

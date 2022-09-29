@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mercado_poo/app/models/ProdutoVenda_models/produtoVenda_models.dart';
 import 'package:mercado_poo/app/models/pessoa/pessoa_models.dart';
 import 'package:mercado_poo/app/models/produto/produto_models.dart';
-import 'package:mercado_poo/app/models/vendaItem_models/vendaItens_models.dart';
 import 'package:mercado_poo/app/models/vendedor/vendedor_models.dart';
 
 part 'venda_models.g.dart';
@@ -14,7 +14,7 @@ class Venda{
   String? formaPagamento;
   Pessoa? clienteVenda;
   Vendedor? vendedorVenda;
-  List<Produto>? produtosVenda;
+  List<ProdutoVenda>? produtosVenda;
   //List<VendaItens>? listVendaItens;
   Venda({
     this.formaPagamento,
@@ -38,7 +38,7 @@ class Venda{
     //List<VendaItens>? listVendaItens,
     Pessoa? clienteVenda,
     Vendedor? vendedorVenda,
-    List<Produto>? produtosVenda,
+    List<ProdutoVenda>? produtosVenda,
   }){
     return Venda(
       id: id ?? this.id,

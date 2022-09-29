@@ -28,4 +28,16 @@ abstract class _CadastroProdutoStoreBase with Store {
       return Future.error(e);
     }
   } 
+     @action
+  Future<Produto> buscarProduto(int id) async {
+    try {
+      isLoading = true;
+      produto = await produtoRepositorio.buscarProduto(id);
+      isLoading = false;
+      return produto;
+    } catch (e) {
+      isLoading = false;
+      return Future.error(e);
+    }
+  }
 }

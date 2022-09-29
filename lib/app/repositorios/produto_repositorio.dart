@@ -34,9 +34,6 @@ class ProdutoRepositorio{
       String url = '/produto/listarTodos';
       var response = await http.get(url: url);
       print(response.data);
-      /*if(response.data.length == 0){
-        return Future.error('Nenhum dado nesse periodo');
-      }*/
       if (response.statusCode == 200) {
         return (response.data as List).map((e) {
           var produto = Produto.fromJson(e);
@@ -44,13 +41,23 @@ class ProdutoRepositorio{
         }).toList();
       }
       return Future.error(response.data['error']);
-    } catch (e) {
-        if (e.toString().contains('Http status error [404]')){
-          return Future.error("Não existe dados no período!");
-        }
-        return Future.error(e);
+    }catch(e){
+      if (e is DioError) {
+        print(e.message);
+        print(Future.error(e).toString());
+      }
+      if (e.toString().contains('Http status error [404]')){
+          return Future.error("Erro ao se conectar no servidor!");
+      }
+      if (e.toString().contains('Http status error [400]')){
+          return Future.error("Dados para conexão incorretos");
+      }
+      if (e.toString().contains('Http status error [500]')){
+          return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
+      }
+      return Future.error(e); 
     }
-  }
+  } 
 
   Future<Produto> buscarProduto(int id) async {
     try {
@@ -60,11 +67,21 @@ class ProdutoRepositorio{
         return Produto.fromJson(response.data);
       }
       return Future.error(response.data['error']);
-    } catch (e) {
+    }catch(e){
       if (e is DioError) {
-        print('${e.message} ${e.response} ${e.error}');
+        print(e.message);
+        print(Future.error(e).toString());
       }
-      return Future.error(e);
+      if (e.toString().contains('Http status error [404]')){
+          return Future.error("Erro ao se conectar no servidor!");
+      }
+      if (e.toString().contains('Http status error [400]')){
+          return Future.error("Dados para conexão incorretos");
+      }
+      if (e.toString().contains('Http status error [500]')){
+          return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
+      }
+      return Future.error(e); 
     }
-  }
+  } 
 }

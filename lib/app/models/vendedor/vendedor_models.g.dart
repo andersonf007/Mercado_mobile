@@ -11,15 +11,11 @@ Vendedor _$VendedorFromJson(Map<String, dynamic> json) => Vendedor(
       nome: json['nome'] as String?,
       cpf: json['cpf'] as String?,
       sexo: json['sexo'] as String?,
-      dataNascimento: json['dataNascimento'] == null
-          ? null
-          : DateTime.parse(json['dataNascimento'] as String),
+      dataNascimento: json['dataNascimento'] as String?,
       email: json['email'] as String?,
       cargo: json['cargo'] as String?,
       salario: (json['salario'] as num?)?.toDouble(),
-      dataContrato: json['dataContrato'] == null
-          ? null
-          : DateTime.parse(json['dataContrato'] as String),
+      dataContrato: json['dataContrato'] as String?,
       enderecoPessoa: json['enderecoPessoa'] == null
           ? null
           : Endereco.fromJson(json['enderecoPessoa'] as Map<String, dynamic>),
@@ -30,10 +26,10 @@ Map<String, dynamic> _$VendedorToJson(Vendedor instance) => <String, dynamic>{
       'nome': instance.nome,
       'cpf': instance.cpf,
       'sexo': instance.sexo,
-      'dataNascimento': instance.dataNascimento?.toIso8601String(),
+      'dataNascimento': instance.dataNascimento,
       'email': instance.email,
       'cargo': instance.cargo,
       'salario': instance.salario,
-      'dataContrato': instance.dataContrato?.toIso8601String(),
+      'dataContrato': instance.dataContrato,
       'enderecoPessoa': instance.enderecoPessoa,
     };

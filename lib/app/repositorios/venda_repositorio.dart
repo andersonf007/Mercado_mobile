@@ -9,7 +9,7 @@ class VendaRepositorio{
   Future<String> inserirVenda(Venda venda) async{
     try{
       final IHttpService iHttpService = IHttpService();
-      var response = await iHttpService.post(url: '/produto/cadastrar', data: venda.toJson());
+      var response = await iHttpService.post(url: '/venda/inserir', data: venda.toJson());
       return response.data['ok'];
     }catch(e){
       if (e is DioError) {
@@ -23,7 +23,9 @@ class VendaRepositorio{
           return Future.error("Dados para conexão incorretos");
       }
       if (e.toString().contains('Http status error [500]')){
+          print(e.toString());
           return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
+          
       }
       return Future.error(e); 
     }

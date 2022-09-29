@@ -9,11 +9,11 @@ class Vendedor{
 	String? nome;
 	String? cpf;
 	String? sexo;
-	DateTime? dataNascimento;
+	String? dataNascimento;
 	String? email;
   String? cargo;
   double? salario;
-  DateTime? dataContrato;
+  String? dataContrato;
   Endereco? enderecoPessoa;
 
   Vendedor({
@@ -37,11 +37,11 @@ class Vendedor{
 	  String? nome,
 	  String? cpf,
 	  String? sexo,
-	  DateTime? dataNascimento,
+	  String? dataNascimento,
 	  String? email,
     String? cargo,
     double? salario,
-    DateTime? dataContrato,
+    String? dataContrato,
   Endereco? enderecoPessoa,
   }){
     return Vendedor(

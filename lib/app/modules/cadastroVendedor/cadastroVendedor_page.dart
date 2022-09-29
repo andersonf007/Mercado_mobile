@@ -781,11 +781,11 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                             nome: textNome.text,
                             cpf: textCpf.text,
                             sexo: textSexo.text,
-                            dataNascimento: DateTime.tryParse(textDataNascimento.text),
+                            dataNascimento: textDataNascimento.text,//DateTime.tryParse(textDataNascimento.text),
                             email: textEmail.text,
                             cargo: textCargo.text,
                             salario: double.parse(textSalario.text),
-                            dataContrato:  DateTime.tryParse(textDataContrato.text),
+                            dataContrato:  textDataContrato.text,//DateTime.tryParse(textDataContrato.text),
                             enderecoPessoa: Endereco(
                               logradouro: textLogradouro.text,
                               cep: textCep.text,
