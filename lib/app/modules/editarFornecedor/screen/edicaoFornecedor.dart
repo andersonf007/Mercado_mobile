@@ -1,42 +1,57 @@
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mercado_poo/app//modules/cadastroPessoa/cadastroPessoa_store.dart';
-import 'package:flutter/material.dart';
-import 'package:mercado_poo/app/models/endereco/endereco_models.dart';
-import 'package:mercado_poo/app/models/pessoa/pessoa_models.dart';
-import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:mercado_poo/app/models/endereco/endereco_models.dart';
+import 'package:mercado_poo/app/models/fornecedor/fornecedor_models.dart';
+import 'package:mercado_poo/app//modules/editarFornecedor/editarFornecedor_store.dart';
 
-class CadastroPessoaPage extends StatefulWidget {
-  final String title;
-  const CadastroPessoaPage({Key? key, this.title = 'CadastroPessoaPage'}) : super(key: key);
+class EdicaoFornecedor extends StatefulWidget {
+  final Fornecedor fornecedor;
+  const EdicaoFornecedor({required this.fornecedor});
+
   @override
-  CadastroPessoaPageState createState() => CadastroPessoaPageState();
+  State<EdicaoFornecedor> createState() => _EdicaoFornecedorState();
 }
-class CadastroPessoaPageState extends State<CadastroPessoaPage> {
-  final CadastroPessoaStore store = Modular.get();
-  TextEditingController textNome = TextEditingController();
-  TextEditingController textCpf = TextEditingController();
-  TextEditingController textSexo = TextEditingController();
-  TextEditingController textDataNascimento = TextEditingController();
-  TextEditingController textEmail = TextEditingController();
-  TextEditingController textLogradouro = TextEditingController();
-  TextEditingController textCep = TextEditingController();
-  TextEditingController textCidade = TextEditingController();
-  TextEditingController textUf = TextEditingController();
-  TextEditingController textBairro = TextEditingController();
-  TextEditingController textNumero = TextEditingController();
-  var maskFormatterDataNascimento = new MaskTextInputFormatter(mask: '##/##/####', filter: { "#": RegExp(r'[0-9]') });
-  var maskFormatterCpf = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
+
+class _EdicaoFornecedorState extends State<EdicaoFornecedor> {
+  final EditarFornecedorStore store = Modular.get();
+  late TextEditingController textNome;
+  late TextEditingController textCnpj;
+  late TextEditingController texttelefone;
+  late TextEditingController textEmail;
+  late TextEditingController textLogradouro;
+  late TextEditingController textCep;
+  late TextEditingController textCidade;
+  late TextEditingController textUf;
+  late TextEditingController textBairro;
+  late TextEditingController textNumero;
+  var maskFormatterCnpj = new MaskTextInputFormatter(mask: '##.###.###/####-##', filter: { "#": RegExp(r'[0-9]') });
+  var maskFormatterTelefone = new MaskTextInputFormatter(mask: '(##)#.####-####', filter: { "#": RegExp(r'[0-9]') });
   var maskFormatterCep = new MaskTextInputFormatter(mask: '##.###-###', filter: { "#": RegExp(r'[0-9]') });
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    textNome = TextEditingController(text: widget.fornecedor.nomeFornecedor);
+    textCnpj = TextEditingController(text: widget.fornecedor.cnpjFornecedor);
+    texttelefone = TextEditingController(text: widget.fornecedor.telefoneFornecedor);
+    textEmail = TextEditingController(text: widget.fornecedor.emailFornecedor);
+    textLogradouro = TextEditingController(text: widget.fornecedor.enderecoFornecedor!.logradouro);
+    textCep = TextEditingController(text: widget.fornecedor.enderecoFornecedor!.cep);    
+    textCidade = TextEditingController(text: widget.fornecedor.enderecoFornecedor!.cidade);
+    textUf = TextEditingController(text: widget.fornecedor.enderecoFornecedor!.uf);      
+    textBairro = TextEditingController(text: widget.fornecedor.enderecoFornecedor!.bairro);
+    textNumero = TextEditingController(text: widget.fornecedor.enderecoFornecedor!.numero);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro Cliente'),
+        title: Text('Editar Fornecedor'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -96,7 +111,7 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                       autocorrect: false,
                     ),
                   ),
-                  Text('CPF',
+                  Text('Cnpj',
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -118,13 +133,13 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                     width: double.maxFinite,
                     child: TextField(
                       keyboardType: TextInputType.number,
-                      inputFormatters: [maskFormatterCpf],
-                      controller: textCpf,
+                      inputFormatters: [maskFormatterCnpj],
+                      controller: textCnpj,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(),
-                        hintText: "CPF",
+                        hintText: "Cnpj",
                         contentPadding: EdgeInsets.only(
                           left: 16,
                         ),
@@ -151,7 +166,7 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                       Expanded(
                         child: Column(
                           children: [
-                            Text('sexo',
+                            Text('Telefone',
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -171,12 +186,14 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                         ),
                         width: double.maxFinite,
                         child: TextField(
-                          controller: textSexo,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [maskFormatterTelefone],
+                          controller: texttelefone,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(),
-                            hintText: "sexo",
+                            hintText: "Telefone",
                             contentPadding: EdgeInsets.only(
                               left: 16,
                             ),
@@ -199,61 +216,6 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                             ),
                           ),
                               ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text('Data Nascimento',
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                                fontStyle: FontStyle.normal,
-                                decoration: TextDecoration.none,
-                              ),
-                            ),
-                            textAlign: TextAlign.left,
-                            maxLines: 1),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                left: 16,
-                                top: 8,
-                                right: 16,
-                                bottom: 8,
-                              ),
-                              width: double.maxFinite,
-                              child: TextField(
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [maskFormatterDataNascimento],
-                                controller: textDataNascimento,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  enabledBorder: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(),
-                                  hintText: "Data Nascimento",
-                                  contentPadding: EdgeInsets.only(
-                                    left: 16,
-                                  ),
-                                ),
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.normal,
-                                    decoration: TextDecoration.none,
-                                  ),
-                                ),
-                                textAlign: TextAlign.left,
-                                maxLines: 1,
-                                minLines: 1,
-                                maxLength: null,
-                                obscureText: false,
-                                showCursor: true,
-                                autocorrect: false,
-                              ),
-                            ),
-                          ],
                         ),
                       ),
                     ],
@@ -627,17 +589,17 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                         child: CircularProgressIndicator(),
                       );
                     return ElevatedButton(
-                      onPressed: () async{
+                      onPressed: ()async {
                         bool deuErro = false;
                         //String data = DateFormat("dd/MM/yyyy").format(textDataNascimento.text);
-                        await store.cadastrarPessoa(
-                          Pessoa(
-                            nome: textNome.text,
-                            cpf: textCpf.text,
-                            sexo: textSexo.text,
-                            dataNascimento: textDataNascimento.text,//DateTime.tryParse(textDataNascimento.text),
-                            email: textEmail.text,
-                            enderecoPessoa: Endereco(
+                        await store.editarFornecedor(
+                          Fornecedor(
+                            id: widget.fornecedor.id,
+                            nomeFornecedor: textNome.text,
+                            cnpjFornecedor: textCnpj.text,
+                            telefoneFornecedor: texttelefone.text,
+                            emailFornecedor: textEmail.text,
+                            enderecoFornecedor: Endereco(
                               logradouro: textLogradouro.text,
                               cep: textCep.text,
                               cidade: textCidade.text,
@@ -645,23 +607,24 @@ class CadastroPessoaPageState extends State<CadastroPessoaPage> {
                               bairro: textBairro.text,
                               numero: textNumero.text
                             ),
-                          )                          
+                          ),
+                          
                         ).onError((error, stackTrace) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(error.toString())));
+                          SnackBar(content: Text("Erro ao editar o fornecedor")));
                           store.isLoading = false;
                           deuErro = true;
                         });
                         if(!deuErro){
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Cliente cadastrado")));
-                            deuErro = false;
-                          Modular.to.pop();
+                            SnackBar(content: Text("Fornecedor editado com sucesso")));
+                            Modular.to.pop();
+                            Modular.to.pop();
                         }
                       },
                       child: Text('Salvar'),
                     );
-                     }),
+                  }),
                 ],
               ),
             )

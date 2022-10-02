@@ -199,4 +199,12 @@ abstract class _VendaStoreBase with Store {
     }
     return Future.error("Fudeu");
   }
+
+  Future<void>  validarEstoque(Produto produto, int quantidade) async{
+    for(int i = 0; i < resultList.length; i++){
+      if(resultList[i].id == produto.id){
+        resultList[i].quantidade =  resultList[i].quantidade! - quantidade;
+      }
+    }
+  }
 }

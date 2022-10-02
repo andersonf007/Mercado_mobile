@@ -179,12 +179,28 @@ class _FinalizarVendaState extends State<FinalizarVenda> {
               ),
               SizedBox(height: 50,), 
               Observer(builder: (context){
+                bool deuErro = false;
                 if(store.isLoadingInserirVenda){
                   return CircularProgressIndicator();
                 }
                 return ElevatedButton(
-                  onPressed: (){
-                    store.finalizarVenda();
+                  onPressed: () async{
+                    await store.finalizarVenda()
+                    .onError((error, stackTrace) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Erro ao finalizar a venda')));
+                      deuErro = true;
+                      store.isLoadingInserirVenda = false;
+                    });
+                      if (!deuErro) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Venda finalizada')));
+                        store.listProdutoVenda.clear();
+                        store.valorTotal = 0.00;
+                        Modular.to.pop();
+                      }
+                      
+
                   }, 
                   child: Text('Finalizar',
                       style: TextStyle(

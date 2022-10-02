@@ -19,7 +19,9 @@ class _ListagemProdutoState extends State<ListagemProduto> {
   @override
   void initState() {
     super.initState();
-    store.buscarTodosProdutos();
+    if(store.resultList.isEmpty){
+      store.buscarTodosProdutos();
+    }
   }
    @override
   Widget build(BuildContext context) {
@@ -131,8 +133,9 @@ class _ListagemProdutoState extends State<ListagemProduto> {
                                         ScaffoldMessenger.of(context).showSnackBar(
                                           SnackBar(content: Text("Digite um valor")));
                                       }else{
-                                        if((int.tryParse(textQuantidade.text) ?? 1) <= store.resultList[index].quantidade!){
+                                        if((int.tryParse(textQuantidade.text) ?? 1) <= store.resultList[index].quantidade! && int.parse(textQuantidade.text) != 0){
                                           await store.adicionarNaListaDeVenda(product, int.parse(textQuantidade.text));
+                                          await store.validarEstoque(product, int.parse(textQuantidade.text));
                                           Modular.to.pop();
                                           Modular.to.pop();
                                         }else{

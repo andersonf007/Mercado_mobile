@@ -63,18 +63,21 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                     child: Column(
                       children: [
                         Text('Venda',
-                        style: TextStyle(
-                          color: Colors.black
+                          style: TextStyle(
+                            color: Colors.black
+                          ),
                         ),
+                        Image.asset(
+                          'assets/venda.png',
+                          height: 100,
+                          width: 100,
                         ),
-                        
                       ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Cadastro',
+                    child: Text('Cadastro',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
@@ -98,7 +101,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                     color: Colors.black
                                   ),
                                 ),
-                                
+                                Image.asset(
+                                  'assets/fornecedor.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
                               ],
                             )),
                         SizedBox(
@@ -118,7 +125,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                     color: Colors.black
                                   ),
                                 ),
-                                
+                                Image.asset(
+                                  'assets/cliente.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
                               ],
                             )),
                         SizedBox(
@@ -139,7 +150,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                
+                                Image.asset(
+                                  'assets/vendedor.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
                               ],
                             )),
                          SizedBox(
@@ -160,13 +175,128 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                
+                                Image.asset(
+                                  'assets/produto.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              ],
+                            )),       
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Editar',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ElevatedButton(
+                            style:  ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 250, 249, 249),
+                            ),
+                            onPressed: () {
+                              Modular.to.pushNamed('/editarFornecedor');
+                            },
+                            child: Column(
+                              children: [
+                                Text('fornecedor',
+                                  style: TextStyle(
+                                    color: Colors.black
+                                  ),
+                                ),
+                                Image.asset(
+                                  'assets/fornecedor.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        ElevatedButton(
+                            style:  ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 250, 249, 249),
+                            ),
+                            onPressed: () {
+                              Modular.to.pushNamed('/cadastroPessoa');
+                            },
+                            child: Column(
+                              children: [
+                                Text('Pessoa',
+                                  style: TextStyle(
+                                    color: Colors.black
+                                  ),
+                                ),
+                                Image.asset(
+                                  'assets/cliente.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 5,
+                        ),    
+                        ElevatedButton(
+                            style:  ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 250, 249, 249),
+                            ),
+                            onPressed: () {
+                              Modular.to.pushNamed('/cadastroVendedor');
+                            },
+                            child: Column(
+                              children: [
+                                Text('Vendedor',
+                                  style: TextStyle(
+                                    color: Colors.black
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Image.asset(
+                                  'assets/vendedor.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              ],
+                            )),
+                         SizedBox(
+                          width: 5,
+                        ),    
+                        ElevatedButton(
+                            style:  ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 250, 249, 249),
+                            ),
+                            onPressed: () {
+                              Modular.to.pushNamed('/cadastroProduto');
+                            },
+                            child: Column(
+                              children: [
+                                Text('Produto',
+                                  style: TextStyle(
+                                    color: Colors.black
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Image.asset(
+                                  'assets/produto.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
                               ],
                             )),       
                       ],
                     ),
                   ),
                 ],
+                
               ),
               SizedBox(
                 height: 8,

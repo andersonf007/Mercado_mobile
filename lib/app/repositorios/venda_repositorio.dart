@@ -20,7 +20,7 @@ class VendaRepositorio{
           return Future.error("Erro ao se conectar no servidor!");
       }
       if (e.toString().contains('Http status error [400]')){
-          return Future.error("Dados para conexão incorretos");
+          return Future.error("Dados incorretos");
       }
       if (e.toString().contains('Http status error [500]')){
           print(e.toString());

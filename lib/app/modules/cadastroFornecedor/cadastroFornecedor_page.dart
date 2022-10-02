@@ -1,6 +1,8 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mercado_poo/app//modules/cadastroFornecedor/cadastroFornecedor_store.dart';
 import 'package:flutter/material.dart';
 import 'package:mercado_poo/app/models/endereco/endereco_models.dart';
@@ -14,7 +16,7 @@ class CadastroFornecedorPage extends StatefulWidget {
 }
 class CadastroFornecedorPageState extends State<CadastroFornecedorPage> {
   final CadastroFornecedorStore store = Modular.get();
-TextEditingController textNome = TextEditingController();
+  TextEditingController textNome = TextEditingController();
   TextEditingController textCnpj = TextEditingController();
   TextEditingController texttelefone = TextEditingController();
   TextEditingController textEmail = TextEditingController();
@@ -24,12 +26,16 @@ TextEditingController textNome = TextEditingController();
   TextEditingController textUf = TextEditingController();
   TextEditingController textBairro = TextEditingController();
   TextEditingController textNumero = TextEditingController();
+  var maskFormatterCnpj = new MaskTextInputFormatter(mask: '##.###.###/####-##', filter: { "#": RegExp(r'[0-9]') });
+  var maskFormatterTelefone = new MaskTextInputFormatter(mask: '(##)#.####-####', filter: { "#": RegExp(r'[0-9]') });
+  var maskFormatterCep = new MaskTextInputFormatter(mask: '##.###-###', filter: { "#": RegExp(r'[0-9]') });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro Fornecedor'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Stack(
@@ -109,6 +115,8 @@ TextEditingController textNome = TextEditingController();
                     ),
                     width: double.maxFinite,
                     child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [maskFormatterCnpj],
                       controller: textCnpj,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -161,6 +169,8 @@ TextEditingController textNome = TextEditingController();
                         ),
                         width: double.maxFinite,
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [maskFormatterTelefone],
                           controller: texttelefone,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -312,6 +322,8 @@ TextEditingController textNome = TextEditingController();
                         ),
                         width: double.maxFinite,
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [maskFormatterCep],
                           controller: textCep,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -560,9 +572,10 @@ TextEditingController textNome = TextEditingController();
                         child: CircularProgressIndicator(),
                       );
                     return ElevatedButton(
-                      onPressed: (){
+                      onPressed: () async{
+                        bool deuErro = false;
                         //String data = DateFormat("dd/MM/yyyy").format(textDataNascimento.text);
-                        store.cadastrarFornecedor(
+                        await store.cadastrarFornecedor(
                           Fornecedor(
                             nomeFornecedor: textNome.text,
                             cnpjFornecedor: textCnpj.text,
@@ -576,13 +589,19 @@ TextEditingController textNome = TextEditingController();
                               bairro: textBairro.text,
                               numero: textNumero.text
                             ),
-                          ),
-                          
+                          ),                          
                         ).onError((error, stackTrace) {
                           ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(error.toString())));
                           store.isLoading = false;
+                          deuErro = true;
                         });
+                        if(!deuErro){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Fornecedor cadastrado")));
+                            deuErro = false;
+                          Modular.to.pop();
+                        }
                       },
                       child: Text('Salvar'),
                     );

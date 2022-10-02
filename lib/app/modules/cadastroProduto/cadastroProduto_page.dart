@@ -1,6 +1,8 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mercado_poo/app//modules/cadastroProduto/cadastroProduto_store.dart';
 import 'package:flutter/material.dart';
 import 'package:mercado_poo/app/models/produto/produto_models.dart';
@@ -19,12 +21,15 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
   TextEditingController textvVenda = TextEditingController();
   TextEditingController textquantidade = TextEditingController();
   TextEditingController textValidade = TextEditingController();
+  
+  var maskFormatterValidade = new MaskTextInputFormatter(mask: '##/##/####', filter: { "#": RegExp(r'[0-9]') });
 
  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro Produto'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Stack(
@@ -156,6 +161,11 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                         ),
                         width: double.maxFinite,
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.deny(
+                                              RegExp(r'[-, ]')),
+                                        ],
                           controller: textvCompra,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -209,6 +219,11 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                               ),
                               width: double.maxFinite,
                               child: TextField(
+                                keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.deny(
+                                              RegExp(r'[-, ]')),
+                                        ],
                                 controller: textvVenda,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
@@ -261,6 +276,11 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                     ),
                     width: double.maxFinite,
                     child: TextField(
+                      keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.deny(
+                              RegExp(r'[-, ]')),
+                        ],
                       controller: textquantidade,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -308,6 +328,8 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                     ),
                     width: double.maxFinite,
                     child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [maskFormatterValidade],
                       controller: textValidade,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -342,9 +364,10 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                         child: CircularProgressIndicator(),
                       );
                     return ElevatedButton(
-                      onPressed: (){
+                      onPressed: () async{
+                        bool deuErro = false;
                         //String data = DateFormat("dd/MM/yyyy").format(textDataNascimento.text);
-                        store.cadastrarProduto(
+                        await store.cadastrarProduto(
                           Produto(
                             nome: textNome.text,
                             categoria: textcategoria.text,
@@ -357,7 +380,14 @@ class CadastroProdutoPageState extends State<CadastroProdutoPage> {
                           ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(error.toString())));
                           store.isLoading = false;
+                          deuErro = true;
                         });
+                        if(!deuErro){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Produto cadastrado")));
+                            deuErro = false;
+                          Modular.to.pop();
+                        }
                       },
                       child: Text('Salvar'),
                     );

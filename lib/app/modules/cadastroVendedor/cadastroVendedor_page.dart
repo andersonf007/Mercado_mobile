@@ -1,6 +1,8 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mercado_poo/app//modules/cadastroVendedor/cadastroVendedor_store.dart';
 import 'package:flutter/material.dart';
 import 'package:mercado_poo/app/models/endereco/endereco_models.dart';
@@ -28,12 +30,17 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
   TextEditingController textUf = TextEditingController();
   TextEditingController textBairro = TextEditingController();
   TextEditingController textNumero = TextEditingController();
+  var maskFormatterDataNascimento = new MaskTextInputFormatter(mask: '##/##/####', filter: { "#": RegExp(r'[0-9]') });
+  var maskFormatterCpf = new MaskTextInputFormatter(mask: '###.###.###-##', filter: { "#": RegExp(r'[0-9]') });
+  var maskFormatterCep = new MaskTextInputFormatter(mask: '##.###-###', filter: { "#": RegExp(r'[0-9]') });
+  var maskFormatterDataContrato = new MaskTextInputFormatter(mask: '##/##/####', filter: { "#": RegExp(r'[0-9]') });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro Vendedor'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Stack(
@@ -113,6 +120,8 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                     ),
                     width: double.maxFinite,
                     child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [maskFormatterCpf],
                       controller: textCpf,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -218,6 +227,8 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                               ),
                               width: double.maxFinite,
                               child: TextField(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [maskFormatterDataNascimento],
                                 controller: textDataNascimento,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
@@ -375,6 +386,11 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                               ),
                               width: double.maxFinite,
                               child: TextField(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.deny(
+                                      RegExp(r'[-, ]')),
+                                ],
                                 controller: textSalario,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
@@ -422,6 +438,8 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                               ),
                               width: double.maxFinite,
                               child: TextField(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [maskFormatterDataContrato],
                                 controller: textDataContrato,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
@@ -526,6 +544,8 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                         ),
                         width: double.maxFinite,
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [maskFormatterCep],
                           controller: textCep,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -774,9 +794,10 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                         child: CircularProgressIndicator(),
                       );
                     return ElevatedButton(
-                      onPressed: (){
+                      onPressed: () async{
+                        bool deuErro = false;
                         //String data = DateFormat("dd/MM/yyyy").format(textDataNascimento.text);
-                        store.cadastrarVendedor(
+                        await store.cadastrarVendedor(
                           Vendedor(
                             nome: textNome.text,
                             cpf: textCpf.text,
@@ -800,7 +821,14 @@ class CadastroVendedorPageState extends State<CadastroVendedorPage> {
                           ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(error.toString())));
                           store.isLoading = false;
+                          deuErro = true;
                         });
+                        if(!deuErro){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Vendedor cadastrado")));
+                            deuErro = false;
+                          Modular.to.pop();
+                        }
                       },
                       child: Text('Salvar'),
                     );

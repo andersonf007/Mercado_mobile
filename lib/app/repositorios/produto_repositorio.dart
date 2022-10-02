@@ -76,7 +76,7 @@ class ProdutoRepositorio{
           return Future.error("Erro ao se conectar no servidor!");
       }
       if (e.toString().contains('Http status error [400]')){
-          return Future.error("Dados para conexão incorretos");
+          return Future.error("Dados incorretos: Verifique os dados do produto. Provavelmente ja existe um com esses dados");
       }
       if (e.toString().contains('Http status error [500]')){
           return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
