@@ -49,6 +49,14 @@ mixin _$EditarClienteStore on _EditarClienteStoreBase, Store {
     return _$buscarClientesAsyncAction.run(() => super.buscarClientes());
   }
 
+  late final _$editarClientesAsyncAction =
+      AsyncAction('_EditarClienteStoreBase.editarClientes', context: context);
+
+  @override
+  Future<void> editarClientes(Pessoa cliente) {
+    return _$editarClientesAsyncAction.run(() => super.editarClientes(cliente));
+  }
+
   @override
   String toString() {
     return '''

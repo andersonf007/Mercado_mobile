@@ -19,6 +19,7 @@ abstract class _EditarClienteStoreBase with Store {
   Future<void> buscarClientes() async{
     try{
       isLoading = true;
+      listCliente.clear();
       listCliente = await pessoaRepositorio.BuscarTodosClientes();
       isLoading = false;
     }catch(e){

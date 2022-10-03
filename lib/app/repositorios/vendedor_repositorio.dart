@@ -59,4 +59,27 @@ class VendedorRepositorio{
       return Future.error(e); 
     }
   }
+
+  Future<String> editarVendedor(Vendedor vendedor) async{
+    try{
+      final IHttpService iHttpService = IHttpService();
+      var response = await iHttpService.post(url: '/vendedor/editar', data: vendedor.toJson());
+      return response.data['ok'];
+    }catch(e){
+      if (e is DioError) {
+        print(e.message);
+        print(Future.error(e).toString());
+      }
+      if (e.toString().contains('Http status error [404]')){
+          return Future.error("Erro ao se conectar no servidor!");
+      }
+      if (e.toString().contains('Http status error [400]')){
+          return Future.error("Dados para conexão incorretos");
+      }
+      if (e.toString().contains('Http status error [500]')){
+          return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
+      }
+      return Future.error(e); 
+    }
+  } 
 }
