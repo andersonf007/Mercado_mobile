@@ -107,4 +107,26 @@ class ProdutoRepositorio{
       return Future.error(e); 
     }
   } 
+
+      Future<void> delete(Produto produto) async{
+    try{
+      final IHttpService iHttpService = IHttpService();
+      var response = await iHttpService.delete(url: '/produto/delete/${produto.id}');//, data: fornecedor.toJson());
+    }catch(e){
+      if (e is DioError) {
+        print(e.message);
+        print(Future.error(e).toString());
+      }
+      if (e.toString().contains('Http status error [404]')){
+          return Future.error("Erro ao se conectar no servidor!");
+      }
+      if (e.toString().contains('Http status error [400]')){
+          return Future.error("atualização ou exclusão em tabela viola restrição de chave estrangeira");
+      }
+      if (e.toString().contains('Http status error [500]')){
+          return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
+      }
+      return Future.error(e); 
+    }
+  }
 }

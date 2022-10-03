@@ -38,4 +38,15 @@ abstract class _EditarProdutoStoreBase with Store {
       return Future.error(e);
     }
   }
+
+    Future<void> delete(Produto produto) async{
+    try{
+      isLoading = true;
+      await produtoRepositorio.delete(produto);
+      isLoading = false;
+    }catch(e){
+      isLoading = false;
+      return Future.error(e);
+    }
+  }
 }

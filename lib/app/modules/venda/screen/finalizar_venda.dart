@@ -188,7 +188,8 @@ class _FinalizarVendaState extends State<FinalizarVenda> {
                     await store.finalizarVenda()
                     .onError((error, stackTrace) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Erro ao finalizar a venda')));
+                        content: Text('Erro ao finalizar a venda\n ${error.toString()}')));
+                        //content: Text('Erro ao finalizar a venda')));
                       deuErro = true;
                       store.isLoadingInserirVenda = false;
                     });

@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'produtoVenda_models.dart';
+part of 'produtoCompra.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProdutoVenda _$ProdutoVendaFromJson(Map<String, dynamic> json) => ProdutoVenda(
+ProdutoCompra _$ProdutoCompraFromJson(Map<String, dynamic> json) =>
+    ProdutoCompra(
       id: json['id'] as int?,
       qtdProdutos: json['qtdProdutos'] as int?,
       valorTotal: (json['valorTotal'] as num?)?.toDouble(),
@@ -16,7 +17,7 @@ ProdutoVenda _$ProdutoVendaFromJson(Map<String, dynamic> json) => ProdutoVenda(
           : Produto.fromJson(json['produto'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ProdutoVendaToJson(ProdutoVenda instance) =>
+Map<String, dynamic> _$ProdutoCompraToJson(ProdutoCompra instance) =>
     <String, dynamic>{
       'id': instance.id,
       'qtdProdutos': instance.qtdProdutos,

@@ -66,6 +66,24 @@ class _EdicaoVendedorState extends State<EdicaoVendedor> {
       appBar: AppBar(
         title: Text('Cadastro Vendedor'),
         centerTitle: true,
+         actions: [
+          InkWell(
+            onTap: () async {
+              await store.delete(widget.vendedor).onError((error, stackTrace) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(error.toString())));
+
+                        });
+              Modular.to.pop();
+              Modular.to.pop();
+            },
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+              size: 30.0,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Stack(

@@ -1,35 +1,35 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mercado_poo/app/models/produto/produto_models.dart';
 
-part 'produtoVenda_models.g.dart';
+part 'produtoCompra.g.dart';
 
 @JsonSerializable()
-class ProdutoVenda{
+class ProdutoCompra{
   int? id;
   int? qtdProdutos;
   double? valorTotal;
   String? validade;
   Produto? produto;
 
- ProdutoVenda({
+ ProdutoCompra({
     this.id,
     this.qtdProdutos,
     this.valorTotal,
     this.validade,
     this.produto,
   });
- factory ProdutoVenda.fromJson(Map<String, dynamic> json) =>
-      _$ProdutoVendaFromJson(json);
-  Map<String, dynamic> toJson() => _$ProdutoVendaToJson(this);
+ factory ProdutoCompra.fromJson(Map<String, dynamic> json) =>
+      _$ProdutoCompraFromJson(json);
+  Map<String, dynamic> toJson() => _$ProdutoCompraToJson(this);
 
-  ProdutoVenda copywith({
+  ProdutoCompra copywith({
     int? id,
     int? qtdProdutos,
     double? valorTotal,
     String? validade,
     Produto? produto,
   }){
-    return ProdutoVenda(
+    return ProdutoCompra(
       id: id ?? this.id,
       qtdProdutos: qtdProdutos ?? this.qtdProdutos,
       valorTotal: valorTotal ?? this.valorTotal,

@@ -44,4 +44,14 @@ abstract class _EditarFornecedorStoreBase with Store {
     }
   }
 
+  Future<void> delete(Fornecedor fornecedor) async{
+    try{
+      isLoading = true;
+      await fornecedorRepositorio.delete(fornecedor);
+      isLoading = false;
+    }catch(e){
+      isLoading = false;
+      return Future.error(e);
+    }
+  }
 }

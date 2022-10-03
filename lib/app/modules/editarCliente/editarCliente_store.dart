@@ -39,4 +39,15 @@ abstract class _EditarClienteStoreBase with Store {
       return Future.error(e);
     }
   }
+
+    Future<void> delete(Pessoa pessoa) async{
+    try{
+      isLoading = true;
+      await pessoaRepositorio.delete(pessoa);
+      isLoading = false;
+    }catch(e){
+      isLoading = false;
+      return Future.error(e);
+    }
+  }
 }

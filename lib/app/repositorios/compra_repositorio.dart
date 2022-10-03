@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:mercado_poo/app/models/venda/venda_models.dart';
+import 'package:mercado_poo/app/models/compra/compra_models.dart';
 import 'package:mercado_poo/app/repositorios/IHttpService.dart';
 
-class VendaRepositorio{
+class CompraRepositorio{
   IHttpService http;
-  VendaRepositorio(this.http);
+  CompraRepositorio(this.http);
 
-  Future<String> inserirVenda(Venda venda) async{
+  Future<String> inserirCompra(Compra compra) async{
     try{
       final IHttpService iHttpService = IHttpService();
-      var response = await iHttpService.post(url: '/venda/inserir', data: venda.toJson());
+      var response = await iHttpService.post(url: '/compra/inserir', data: compra.toJson());
       return response.data['ok'];
     }catch(e){
       if (e is DioError) {
@@ -24,8 +24,8 @@ class VendaRepositorio{
       }
       if (e.toString().contains('Http status error [500]')){
           print(e.toString());
-          //return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
-          return Future.error(e);
+          return Future.error("Erro interno no servidor. Estamos trabalhando para resolver.");
+          //return Future.error(e);
       }
       return Future.error(e); 
     }

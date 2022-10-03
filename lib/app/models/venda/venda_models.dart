@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mercado_poo/app/models/ProdutoVenda_models/produtoVenda_models.dart';
+import 'package:mercado_poo/app/models/ProdutoVenda/produtoVenda.dart';
 import 'package:mercado_poo/app/models/pessoa/pessoa_models.dart';
 import 'package:mercado_poo/app/models/produto/produto_models.dart';
 import 'package:mercado_poo/app/models/vendedor/vendedor_models.dart';

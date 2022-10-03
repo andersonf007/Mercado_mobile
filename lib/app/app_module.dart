@@ -3,6 +3,7 @@ import 'package:mercado_poo/app/modules/cadastroFornecedor/cadastroFornecedor_mo
 import 'package:mercado_poo/app/modules/cadastroPessoa/cadastroPessoa_module.dart';
 import 'package:mercado_poo/app/modules/cadastroProduto/cadastroProduto_module.dart';
 import 'package:mercado_poo/app/modules/cadastroVendedor/cadastroVendedor_module.dart';
+import 'package:mercado_poo/app/modules/compra/compra_module.dart';
 import 'package:mercado_poo/app/modules/editarCliente/editarCliente_module.dart';
 import 'package:mercado_poo/app/modules/editarFornecedor/editarFornecedor_module.dart';
 import 'package:mercado_poo/app/modules/editarProduto/editarProduto_module.dart';
@@ -38,6 +39,7 @@ class AppModule extends Module {
     ModuleRoute('/editarCliente', module: EditarClienteModule(),),
     ModuleRoute('/editarVendedor', module: EditarVendedorModule(),),
     ModuleRoute('/editarProduto', module: EditarProdutoModule(),),    
+    ModuleRoute('/compra', module: CompraModule(),),    
   ];
 
 }

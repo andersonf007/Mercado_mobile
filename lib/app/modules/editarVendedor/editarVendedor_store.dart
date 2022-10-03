@@ -38,4 +38,15 @@ _EditarVendedorStoreBase({required this.vendedorRepositorio});
       return Future.error(e);
     }
   }
+
+    Future<void> delete(Vendedor vendedor) async{
+    try{
+      isLoading = true;
+      await vendedorRepositorio.delete(vendedor);
+      isLoading = false;
+    }catch(e){
+      isLoading = false;
+      return Future.error(e);
+    }
+  }
 }

@@ -53,6 +53,24 @@ class _EdicaoFornecedorState extends State<EdicaoFornecedor> {
       appBar: AppBar(
         title: Text('Editar Fornecedor'),
         centerTitle: true,
+        actions: [
+          InkWell(
+            onTap: () async {
+              await store.delete(widget.fornecedor).onError((error, stackTrace) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(error.toString())));
+
+                        });
+              Modular.to.pop();
+              Modular.to.pop();
+            },
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+              size: 30.0,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Stack(

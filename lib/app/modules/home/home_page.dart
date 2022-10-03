@@ -45,36 +45,84 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             children: [
               Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Venda',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style:  ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 250, 249, 249),
-                    ),
-                    onPressed: () {
-                      Modular.to.pushNamed('/venda');
-                    },                    
-                    child: Column(
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Venda',
-                          style: TextStyle(
-                            color: Colors.black
-                          ),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Venda',
+                                style:
+                                    TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                              ),
+                            ),
+                            ElevatedButton(
+                              style:  ElevatedButton.styleFrom(
+                                primary: Color.fromARGB(255, 250, 249, 249),
+                              ),
+                              onPressed: () {
+                                Modular.to.pushNamed('/venda');
+                              },                    
+                              child: Column(
+                                children: [
+                                  Text('Venda',
+                                    style: TextStyle(
+                                      color: Colors.black
+                                    ),
+                                  ),
+                                  Image.asset(
+                                    'assets/venda.png',
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                        Image.asset(
-                          'assets/venda.png',
-                          height: 100,
-                          width: 100,
+                        SizedBox(width: 50,),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Compra',
+                                style:
+                                    TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                              ),
+                            ),
+                            ElevatedButton(
+                              style:  ElevatedButton.styleFrom(
+                                primary: Color.fromARGB(255, 250, 249, 249),
+                              ),
+                              onPressed: () {
+                                Modular.to.pushNamed('/compra');
+                              },                    
+                              child: Column(
+                                children: [
+                                  Text('Compra',
+                                    style: TextStyle(
+                                      color: Colors.black
+                                    ),
+                                  ),
+                                  Image.asset(
+                                    'assets/venda.png',
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
+                        
                       ],
                     ),
-                  ),
+                  ),    
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text('Cadastro',

@@ -55,6 +55,24 @@ class _EdicaoClienteState extends State<EdicaoCliente> {
       appBar: AppBar(
         title: Text('Editar Cliente'),
         centerTitle: true,
+         actions: [
+          InkWell(
+            onTap: () async {
+              await store.delete(widget.pessoa).onError((error, stackTrace) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(error.toString())));
+
+                        });
+              Modular.to.pop();
+              Modular.to.pop();
+            },
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+              size: 30.0,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Stack(
