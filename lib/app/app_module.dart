@@ -3,7 +3,10 @@ import 'package:mercado_poo/app/modules/cadastroFornecedor/cadastroFornecedor_mo
 import 'package:mercado_poo/app/modules/cadastroPessoa/cadastroPessoa_module.dart';
 import 'package:mercado_poo/app/modules/cadastroProduto/cadastroProduto_module.dart';
 import 'package:mercado_poo/app/modules/cadastroVendedor/cadastroVendedor_module.dart';
+import 'package:mercado_poo/app/modules/editarCliente/editarCliente_module.dart';
 import 'package:mercado_poo/app/modules/editarFornecedor/editarFornecedor_module.dart';
+import 'package:mercado_poo/app/modules/editarProduto/editarProduto_module.dart';
+import 'package:mercado_poo/app/modules/editarVendedor/editarVendedor_module.dart';
 import 'package:mercado_poo/app/modules/home/home_module.dart';
 import 'package:mercado_poo/app/modules/setting/setting_module.dart';
 import 'package:mercado_poo/app/modules/signin/signin_module.dart';
@@ -32,7 +35,9 @@ class AppModule extends Module {
     ModuleRoute('/cadastroProduto', module: CadastroProdutoModule()),
     ModuleRoute('/venda', module: VendaModule(),),
     ModuleRoute('/editarFornecedor', module: EditarFornecedorModule(),),
-    
+    ModuleRoute('/editarCliente', module: EditarClienteModule(),),
+    ModuleRoute('/editarVendedor', module: EditarVendedorModule(),),
+    ModuleRoute('/editarProduto', module: EditarProdutoModule(),),    
   ];
 
 }

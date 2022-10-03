@@ -226,11 +226,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                               primary: Color.fromARGB(255, 250, 249, 249),
                             ),
                             onPressed: () {
-                              Modular.to.pushNamed('/cadastroPessoa');
+                              Modular.to.pushNamed('/editarCliente');
                             },
                             child: Column(
                               children: [
-                                Text('Pessoa',
+                                Text('Cliente',
                                   style: TextStyle(
                                     color: Colors.black
                                   ),

@@ -1,32 +1,28 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:mercado_poo/app//modules/editarFornecedor/editarFornecedor_store.dart';
+import 'package:mercado_poo/app//modules/editarCliente/editarCliente_store.dart';
 import 'package:flutter/material.dart';
 
-class EditarFornecedorPage extends StatefulWidget {
+class EditarClientePage extends StatefulWidget {
   final String title;
-  const EditarFornecedorPage({Key? key, this.title = 'EditarFornecedorPage'}) : super(key: key);
+  const EditarClientePage({Key? key, this.title = 'EditarClientePage'}) : super(key: key);
   @override
-  EditarFornecedorPageState createState() => EditarFornecedorPageState();
+  EditarClientePageState createState() => EditarClientePageState();
 }
-class EditarFornecedorPageState extends State<EditarFornecedorPage> {
-  final EditarFornecedorStore store = Modular.get();
-
-  @override
+class EditarClientePageState extends State<EditarClientePage> {
+  final EditarClienteStore store = Modular.get();
+@override
   void initState() {
     // TODO: implement initState
     super.initState();
-    store.buscarFornecedores();
+    store.buscarClientes();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Fornecedor'),
+        title: Text('Editar Clientes'),
         centerTitle: true,
       ),
       body: Column(
@@ -38,22 +34,22 @@ class EditarFornecedorPageState extends State<EditarFornecedorPage> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  if(store.listFornecedor.isEmpty){
-                    return Text("Não existe Fornecedor");
+                  if(store.listCliente.isEmpty){
+                    return Text("Não existe cliente");
                   }
                   return Expanded(
                     child: ListView.builder(                      
-                      itemCount: store.listFornecedor.length,
+                      itemCount: store.listCliente.length,
                       itemBuilder: (context, index) {
                         //var fornecedor = store.listFornecedor[index];
                         return GestureDetector(
                           onTap: () async {
                             bool deuErro = false;
-                            Modular.to.pushNamed('/editarFornecedor/edicaoFornecedor',arguments: store.listFornecedor[index]);
+                            Modular.to.pushNamed('/editarCliente/edicaoCliente',arguments: store.listCliente[index]);
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(store.listFornecedor[index].nomeFornecedor ?? '',
+                            child: Text(store.listCliente[index].nome ?? '',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18

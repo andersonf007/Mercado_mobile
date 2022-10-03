@@ -41,6 +41,22 @@ mixin _$EditarFornecedorStore on _EditarFornecedorStoreBase, Store {
     });
   }
 
+  late final _$idFornecedorAtom =
+      Atom(name: '_EditarFornecedorStoreBase.idFornecedor', context: context);
+
+  @override
+  int get idFornecedor {
+    _$idFornecedorAtom.reportRead();
+    return super.idFornecedor;
+  }
+
+  @override
+  set idFornecedor(int value) {
+    _$idFornecedorAtom.reportWrite(value, super.idFornecedor, () {
+      super.idFornecedor = value;
+    });
+  }
+
   late final _$buscarFornecedoresAsyncAction = AsyncAction(
       '_EditarFornecedorStoreBase.buscarFornecedores',
       context: context);
@@ -55,7 +71,8 @@ mixin _$EditarFornecedorStore on _EditarFornecedorStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-listFornecedor: ${listFornecedor}
+listFornecedor: ${listFornecedor},
+idFornecedor: ${idFornecedor}
     ''';
   }
 }
